@@ -8,7 +8,6 @@ import {
 } from "firebase/auth";
 import { setDoc, doc, serverTimestamp } from "firebase/firestore";
 import { db } from "../firebase.config";
-import { v4 as uuid4 } from "uuid";
 
 function Register() {
   const [formData, setFormData] = useState({

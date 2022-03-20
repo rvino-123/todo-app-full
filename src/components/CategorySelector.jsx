@@ -1,17 +1,13 @@
 import ListContext from "../context/lists/ListContext";
 import CategorySelectItem from "./CategorySelectItem";
 import { useContext } from "react";
-import {
-  addCategoryToListItem,
-  getCategories,
-  getItems,
-} from "../context/lists/ListActions";
+import { addCategoryToListItem, getItems } from "../context/lists/ListActions";
 import { getAuth } from "firebase/auth";
 
 function CategorySelector({ currentCategory, board, listItem }) {
   const auth = getAuth();
   const user = auth.currentUser;
-  const { categories, listItems, dispatch } = useContext(ListContext);
+  const { categories, dispatch } = useContext(ListContext);
   const handleClick = async (e) => {
     console.log(e.target.id);
     await addCategoryToListItem(listItem, e.target.id);
@@ -21,7 +17,7 @@ function CategorySelector({ currentCategory, board, listItem }) {
   return (
     <div className="category-selector-grid">
       {categories
-        .filter((cat) => cat.data.board == board)
+        .filter((cat) => cat.data.board === board)
         .map((category) => {
           return (
             <CategorySelectItem

@@ -67,7 +67,7 @@ function CategoryTable() {
     };
 
     addCategories(user.uid);
-  }, []);
+  }, [dispatch, user.uid]);
 
   const handleDelete = async (e) => {
     await deleteCategory(e.target.id);
@@ -104,7 +104,11 @@ function CategoryTable() {
   const submitNewCategory = async (e) => {
     e.preventDefault();
     const formData = newCategoryForm;
-    if (formData.board == "" || formData.name == "" || formData.color == "") {
+    if (
+      formData.board === "" ||
+      formData.name === "" ||
+      formData.color === ""
+    ) {
       toast.error("Missing Data, Try again. ");
     } else {
       await createCategory(formData);
@@ -118,7 +122,7 @@ function CategoryTable() {
     e.preventDefault();
     closeEditModal();
     const formData = editCategoryForm;
-    if (formData.name == "" || formData.color == "") {
+    if (formData.name === "" || formData.color === "") {
       toast.error("Missing Data, Try again. ");
     } else {
       await editCategory(category.id, formData);

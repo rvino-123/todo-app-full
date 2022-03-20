@@ -15,5 +15,5 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig); // eslint-disable-line no-use-before-define
 export const db = getFirestore();
