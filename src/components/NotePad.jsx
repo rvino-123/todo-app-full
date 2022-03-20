@@ -13,12 +13,14 @@ function NotePad() {
 
   useEffect(() => {
     const setNoteAfterEdit = async () => {
-      const newNote = await getNotes(note.data.itemRef);
-      dispatch({ type: "GET_NOTE", payload: newNote });
+      if (note.length > 0) {
+        const newNote = await getNotes(note.data?.itemRef);
+        dispatch({ type: "GET_NOTE", payload: newNote });
+      }
     };
 
     setNoteAfterEdit();
-  }, [editMode, dispatch, note.data.itemRef]);
+  }, [editMode, dispatch, note.length, note.data?.itemRef]);
 
   const handleClick = () => {
     editMode ? setEditMode(false) : setEditMode(true);
