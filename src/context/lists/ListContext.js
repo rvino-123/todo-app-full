@@ -6,8 +6,11 @@ const ListContext = createContext()
 export const ListProvider = ({ children }) => {
     const initialState = {
         listItems: [],
-        listItem: {},
-        loading: false
+        filteredItems: [],
+        categories: [], 
+        note: {},
+        loading: false,
+        isFiltered: false
     }
 
     const [state, dispatch] = useReducer(listReducer, initialState)

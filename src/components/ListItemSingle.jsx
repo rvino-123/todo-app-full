@@ -7,21 +7,27 @@ import {
   editListItem,
   getItems,
   deleteListItem,
-  getCategories,
   getNotes,
   createNote,
 } from "../context/lists/ListActions";
 import ListContext from "../context/lists/ListContext";
 import { db } from "../firebase.config";
-import SelectCategory from "./SelectCategory";
 
-function ListItemSingle({ listItem, listId }) {
+// Plan to edit/add category
+// When hover, an empty circle or plus icon appears.
+// User can click on that and a select appears for available categories.
+// options should only be available depending on the board.
+
+function ListItem({ listItem, listId }) {
   const { description, isDone, isPriority, categoryRef } = listItem;
   const [editList, setEditList] = useState(listItem);
+  // State for modal.
   const [hover, setHover] = useState(false);
   const { dispatch } = useContext(ListContext);
   const auth = getAuth();
   const user = auth.currentUser;
+
+  // Get all Categories
 
   const handleChecked = async () => {
     let formData = editList;
@@ -31,15 +37,6 @@ function ListItemSingle({ listItem, listId }) {
     await editListItem(listId, formData);
     const newLists = await getItems(user.uid);
     dispatch({ type: "GET_ITEMS", payload: newLists });
-  };
-
-  const handleClick = async (e) => {
-    const note = await getNotes(listId);
-    if (!note) {
-      await createNote({ description: "", itemRef: listId });
-    }
-    const newNote = await getNotes(listId);
-    dispatch({ type: "GET_NOTE", payload: note || newNote });
   };
 
   const handlePriority = async () => {
@@ -71,6 +68,15 @@ function ListItemSingle({ listItem, listId }) {
   const handleMouseLeave = () => {
     setHover(false);
   };
+
+  const handleClick = async (e) => {
+    const note = await getNotes(listId);
+    if (!note) {
+      await createNote({ description: "", itemRef: listId });
+    }
+    const newNote = await getNotes(listId);
+    dispatch({ type: "GET_NOTE", payload: note || newNote });
+  };
   return (
     <div
       className="list-item"
@@ -94,19 +100,11 @@ function ListItemSingle({ listItem, listId }) {
             onClick={handlePriority}
           />
         )}
-        {hover && (
-          <>
-            <SelectCategory
-              listItemId={listId}
-              board={listItem?.board}
-              currentCategoryId={categoryRef}
-            />
-            <MdOutlineDelete size={"22px"} onClick={handleDelete} />
-          </>
-        )}
+        {/* Add menu icon here */}
+        {hover && <MdOutlineDelete size={"22px"} onClick={handleDelete} />}
       </div>
     </div>
   );
 }
 
-export default ListItemSingle;
+export default ListItem;
