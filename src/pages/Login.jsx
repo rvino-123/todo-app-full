@@ -32,7 +32,7 @@ function Login() {
       );
 
       if (userCredential.user) {
-        navigate("/");
+        navigate("/all-boards");
       }
     } catch (error) {
       toast.error("Bad User Credentials");

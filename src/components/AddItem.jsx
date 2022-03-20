@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { getAuth } from "firebase/auth";
 import {
   addDoc,
@@ -9,73 +9,54 @@ import {
 } from "firebase/firestore";
 import { v4 as uuid4 } from "uuid";
 import { MdAddCircleOutline } from "react-icons/md";
+import { db } from "../firebase.config";
+import { toast } from "react-toastify";
+import { getItems } from "../context/lists/ListActions";
+import ListContext from "../context/lists/ListContext";
 
-function AddItem() {
-  const initialStatePersonal = {
+function AddItem({ boardName, listLength }) {
+  const auth = getAuth();
+  const user = auth.currentUser;
+  const { dispatch } = useContext(ListContext);
+
+  const [formData, setFormData] = useState({
     description: "",
-    board: "personal",
+    board: boardName,
     userRef: user.uid,
     isDone: false,
+    isDeleted: false,
     isPriority: false,
     categoryRef: "",
-  };
-  const initialStateProfessional = {
-    description: "",
-    board: "professional",
-    userRef: user.uid,
-    isDone: false,
-    isPriority: false,
-    categoryRef: "",
-  };
+  });
 
-  const [itemFormPersonal, setItemFormPersonal] = useState();
-  const [itemFormProfessional, setItemFormProfessional] = useState();
+  const { description } = formData;
 
   const handleChange = (e) => {
-    switch (e.target.id) {
-      case "professional":
-        setItemFormProfessional((prevState) => ({
-          ...prevState,
-          description: e.target.value,
-        }));
-        break;
-      case "personal":
-        setItemFormPersonal((prevState) => ({
-          ...prevState,
-          description: e.target.value,
-        }));
-    }
+    setFormData((prevState) => ({
+      ...prevState,
+      [e.target.id]: e.target.value,
+    }));
   };
 
   const submitListItem = async (e) => {
-    let formData = {};
-    switch (e.target.id) {
-      case "professionalSubmit":
-        formData = { ...itemFormProfessional };
-        break;
-      case "personalSubmit":
-        formData = { ...itemFormPersonal };
-        break;
-    }
+    let formDataCopy = formData;
     console.log(formData);
-    const inputTag = document.getElementsByClassName(`${formData.board}`);
-    inputTag.value = "";
-    formData.board == "personal"
-      ? setItemFormPersonal(initialStatePersonal)
-      : setItemFormProfessional(initialStateProfessional);
 
-    if (formData.description == "") {
+    if (formDataCopy.description == "") {
       return toast.error("Can't Upload Empty Task");
     }
+
     const id = uuid4();
-
-    formData.timestamp = serverTimestamp();
-    boardsRef.current.push({ id, data: formData });
+    formData.createdAt = serverTimestamp();
+    console.log(listLength);
+    formData.rank = listLength + 1;
     const listReference = await setDoc(doc(db, "items", id), formData);
-
-    console.log(boardsRef.current);
-
-    toast.success("Task Created");
+    const newItems = await getItems(user.uid);
+    dispatch({ type: "GET_ITEMS", payload: newItems });
+    setFormData((prevState) => ({
+      ...prevState,
+      description: "",
+    }));
   };
   return (
     <div className="list-item add-icon">
@@ -83,13 +64,13 @@ function AddItem() {
         <MdAddCircleOutline
           size={"24px"}
           onClick={submitListItem}
-          id="professionalSubmit"
           className="submit-list-item"
         />
         <input
-          id="professional"
+          id="description"
           type="text"
           placeholder="Add a task..."
+          value={description}
           onChange={handleChange}
         />
       </div>

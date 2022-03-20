@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
+import ListContext from "../context/lists/ListContext";
 import CollapsibleMenu from "./CollapsibleMenu";
+import NavItem from "./NavItem";
 
 const boardRoutes = [
   {
@@ -15,9 +17,14 @@ const boardRoutes = [
     name: "Professional Board",
     route: "professional",
   },
+  {
+    name: "Manage Categories",
+    route: "categories",
+  },
 ];
 
-function SideNav({ categories, setCategories }) {
+function SideNav({ setModalIsOpen }) {
+  const { categories } = useContext(ListContext);
   return (
     <nav className="sidenav">
       <div className="logo-container">
@@ -36,6 +43,7 @@ function SideNav({ categories, setCategories }) {
         categories={categories.filter(
           (cat) => cat.data.board == boardRoutes[1].route
         )}
+        setModalIsOpen={setModalIsOpen}
       />
       <CollapsibleMenu
         boardName={boardRoutes[2].name}
@@ -44,7 +52,9 @@ function SideNav({ categories, setCategories }) {
         categories={categories.filter(
           (cat) => cat.data.board == boardRoutes[2].route
         )}
+        setModalIsOpen={setModalIsOpen}
       />
+      <NavItem name={boardRoutes[3].name} route={boardRoutes[3].route} />
     </nav>
   );
 }

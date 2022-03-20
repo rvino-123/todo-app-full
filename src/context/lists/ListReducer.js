@@ -6,17 +6,53 @@ const listReducer = (state, action) => {
                 listItems: action.payload,
                 loading:false,
             }
+        case 'GET_CATEGORIES':
+            return {
+                ...state,
+                categories: action.payload,
+                loading: false
+            }
+        case 'GET_CATEGORY':
+            return {
+                ...state,
+                category: action.payload,
+                loading:false
+            }
+        case 'GET_NOTE':
+            return {
+                ...state,
+                note: action.payload,
+                loading:false
+            }
         case 'GET_ITEM':
             return {
                 ...state,
                 listItem: action.payload,
                 loading:false
             }
+        case 'FILTER_ITEMS':
+            return {
+                ...state,
+                filteredItems: action.payload,
+                isFiltered: true,
+                loading:false
+            }
+        case 'DELETE_ITEM':
+            return {
+                ...state,
+                listItems: action.payload,
+            }
         case 'SET_LOADING': 
             return {
                 ...state,
-                loading:false
+                loading:true
             }
+        case 'RESET_FILTER': 
+        return {
+            ...state,
+            isFiltered: false,
+            filteredItems: []
+        }
         default: 
             return state
     }
