@@ -8,7 +8,6 @@ import Home from './pages/Home';
 import {ListProvider} from './context/lists/ListContext'
 import PersonalBoard from './pages/PersonalBoard';
 import ProfessionalBoard from './pages/ProfessionalBoard';
-import { ModalProvider } from './context/modals/ModalContext';
 import ManageCategories from './pages/ManageCategories';
 import Modal from 'react-modal'
 

@@ -1,7 +1,6 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import ListContext from "../context/lists/ListContext";
 import Modal from "react-modal/lib/components/Modal";
-import { getCategory } from "../context/lists/ListActions";
 import CategorySelector from "./CategorySelector";
 import { MdAddCircleOutline } from "react-icons/md";
 
@@ -20,10 +19,9 @@ const customStyles = {
 
 function SelectCategory({ listItemId, currentCategoryId, board }) {
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [hover, setHover] = useState(false);
 
-  const { categories, dispatch } = useContext(ListContext);
-  const [currentCategory, setCurentCategory] = useState(
+  const { categories } = useContext(ListContext);
+  const [currentCategory] = useState(
     categories.filter((cat) => cat.id === currentCategoryId)[0]
   );
 
@@ -32,32 +30,20 @@ function SelectCategory({ listItemId, currentCategoryId, board }) {
   };
   const closeModal = () => {
     setModalIsOpen(false);
-    setHover(false);
   };
-
-  const onMouseEnter = () => setHover(true);
-  const onMouseLeave = (e) => setHover(false);
-
   return (
     <>
       {currentCategoryId ? (
         <div
           className="show-category"
           onClick={openModal}
-          onMouseLeave={onMouseLeave}
-          onMouseEnter={onMouseEnter}
           style={{
             backgroundColor: `${currentCategory.data.color}`,
             border: "none",
           }}
         ></div>
       ) : (
-        <MdAddCircleOutline
-          size={"24px"}
-          onClick={openModal}
-          onMouseLeave={onMouseLeave}
-          onMouseEnter={onMouseEnter}
-        />
+        <MdAddCircleOutline size={"24px"} onClick={openModal} />
       )}
 
       <Modal

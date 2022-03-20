@@ -1,23 +1,19 @@
 import { getAuth } from "firebase/auth";
-import { doc, serverTimestamp, setDoc } from "firebase/firestore";
-import { useContext, useEffect, useState } from "react";
+import { serverTimestamp } from "firebase/firestore";
+import { useContext, useState } from "react";
 import { MdFlag, MdOutlinedFlag, MdOutlineDelete } from "react-icons/md";
-import { toast } from "react-toastify";
 import {
   editListItem,
   getItems,
-  deleteListItem,
-  getCategories,
   getNotes,
   createNote,
 } from "../context/lists/ListActions";
 import ListContext from "../context/lists/ListContext";
-import { db } from "../firebase.config";
 import SelectCategory from "./SelectCategory";
 
 function ListItemSingle({ listItem, listId }) {
   const { description, isDone, isPriority, categoryRef } = listItem;
-  const [editList, setEditList] = useState(listItem);
+  const [editList] = useState(listItem);
   const [hover, setHover] = useState(false);
   const { dispatch } = useContext(ListContext);
   const auth = getAuth();

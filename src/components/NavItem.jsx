@@ -8,12 +8,12 @@ function NavItem({ name, route }) {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (location.pathname.slice(1) == route) {
+    if (location.pathname.slice(1) === route) {
       setActive(true);
     } else {
       setActive(false);
     }
-  }, [location]);
+  }, [location, route]);
 
   const navigateOnClick = () => {
     if (location.pathname.slice(1) !== route) {

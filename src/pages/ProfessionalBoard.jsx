@@ -6,7 +6,7 @@ import { getCategories, getItems } from "../context/lists/ListActions";
 import ListContext from "../context/lists/ListContext";
 
 function ProfessionalBoard() {
-  const { listItems, listItem, dispatch, categories } = useContext(ListContext);
+  const { dispatch, categories } = useContext(ListContext);
   const auth = getAuth();
   const user = auth.currentUser;
 
@@ -21,7 +21,7 @@ function ProfessionalBoard() {
     getListItemsAndCategories();
 
     // getEntity("items", user.uid, setListItems);
-  }, [dispatch]);
+  }, [dispatch, user.uid]);
   return (
     <div className="container">
       <SideNav categories={categories} />

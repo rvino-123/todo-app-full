@@ -1,12 +1,6 @@
 import { useContext, useState } from "react";
 import { getAuth } from "firebase/auth";
-import {
-  addDoc,
-  collection,
-  doc,
-  serverTimestamp,
-  setDoc,
-} from "firebase/firestore";
+import { doc, serverTimestamp, setDoc } from "firebase/firestore";
 import { v4 as uuid4 } from "uuid";
 import { MdAddCircleOutline } from "react-icons/md";
 import { db } from "../firebase.config";
@@ -42,7 +36,7 @@ function AddItem({ boardName, listLength }) {
     let formDataCopy = formData;
     console.log(formData);
 
-    if (formDataCopy.description == "") {
+    if (formDataCopy.description === "") {
       return toast.error("Can't Upload Empty Task");
     }
 
@@ -50,7 +44,6 @@ function AddItem({ boardName, listLength }) {
     formData.createdAt = serverTimestamp();
     console.log(listLength);
     formData.rank = listLength + 1;
-    const listReference = await setDoc(doc(db, "items", id), formData);
     const newItems = await getItems(user.uid);
     dispatch({ type: "GET_ITEMS", payload: newItems });
     setFormData((prevState) => ({

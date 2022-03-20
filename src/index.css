@@ -145,7 +145,7 @@ body::-webkit-scrollbar {
 
 .user-container > div {
   display: flex;
-  justify-content: end;
+  justify-content: right;
   gap: 1rem;
   font-weight: 700;
   align-items: center;

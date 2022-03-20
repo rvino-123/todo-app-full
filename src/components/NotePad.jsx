@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { MdEdit, MdCheckCircleOutline } from "react-icons/md";
 import { BsEraser } from "react-icons/bs";
 import { editNote, getNotes } from "../context/lists/ListActions";
@@ -18,7 +18,7 @@ function NotePad() {
     };
 
     setNoteAfterEdit();
-  }, [editMode]);
+  }, [editMode, dispatch, note.data.itemRef]);
 
   const handleClick = () => {
     editMode ? setEditMode(false) : setEditMode(true);
@@ -56,7 +56,7 @@ function NotePad() {
       <div>
         {note.data ? (
           editMode ? (
-            note.data.description.length == 0 ? (
+            note.data.description.length === 0 ? (
               <>
                 <textarea
                   className="note-text-area"
@@ -87,7 +87,7 @@ function NotePad() {
                 </div>
               </>
             )
-          ) : note.data.description.length == 0 ? (
+          ) : note.data.description.length === 0 ? (
             <>
               <p className="note-text">No Notes for this Task.</p>
               <div className="notepad-icon">

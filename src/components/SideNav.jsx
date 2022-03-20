@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import ListContext from "../context/lists/ListContext";
 import CollapsibleMenu from "./CollapsibleMenu";
 import NavItem from "./NavItem";
@@ -41,7 +40,7 @@ function SideNav({ setModalIsOpen }) {
         route={boardRoutes[1].route}
         canCreateCat={true}
         categories={categories.filter(
-          (cat) => cat.data.board == boardRoutes[1].route
+          (cat) => cat.data.board === boardRoutes[1].route
         )}
         setModalIsOpen={setModalIsOpen}
       />
@@ -50,7 +49,7 @@ function SideNav({ setModalIsOpen }) {
         route={boardRoutes[2].route}
         canCreateCat={true}
         categories={categories.filter(
-          (cat) => cat.data.board == boardRoutes[2].route
+          (cat) => cat.data.board === boardRoutes[2].route
         )}
         setModalIsOpen={setModalIsOpen}
       />

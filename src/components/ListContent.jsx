@@ -1,14 +1,11 @@
 import { useContext, useRef, useState } from "react";
 import ListContext from "../context/lists/ListContext";
 import ListItem from "./ListItem";
-import { MdAddCircleOutline } from "react-icons/md";
 import AddItem from "./AddItem";
-import ListItemSingle from "./ListItemSingle";
 
-function ListContent({ boardName, isSingleView }) {
-  const { listItems, filteredItems, isFiltered, dispatch } =
-    useContext(ListContext);
-  const [currentboardName, setBoardName] = useState(boardName);
+function ListContent({ boardName }) {
+  const { listItems, filteredItems, isFiltered } = useContext(ListContext);
+  const [currentboardName] = useState(boardName);
   const listLength = useRef(null);
   listLength.current = listItems.length;
   console.log(listLength);
@@ -21,7 +18,7 @@ function ListContent({ boardName, isSingleView }) {
           {filteredItems &&
             filteredItems
               .filter((listitems) => {
-                return listitems.data.board == boardName;
+                return listitems.data.board === boardName;
               })
               .map((item) => {
                 // console.log(item);
@@ -39,7 +36,7 @@ function ListContent({ boardName, isSingleView }) {
           {listItems &&
             listItems
               .filter((listitems) => {
-                return listitems.data.board == boardName;
+                return listitems.data.board === boardName;
               })
               .map((item) => {
                 // console.log(item);

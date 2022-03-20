@@ -3,37 +3,29 @@ import {
   MdOutlineKeyboardArrowDown,
   MdOutlineKeyboardArrowRight,
   MdFlag,
-  MdOutlinedFlag,
-  MdAddCircleOutline,
 } from "react-icons/md";
-import { useNavigate, useParams, useLocation } from "react-router-dom";
-import {
-  filterListItemsByCategory,
-  getItems,
-} from "../context/lists/ListActions";
+import { useNavigate, useLocation } from "react-router-dom";
+import { filterListItemsByCategory } from "../context/lists/ListActions";
 import ListContext from "../context/lists/ListContext";
-import { getAuth } from "firebase/auth";
+// import { getAuth } from "firebase/auth";
 
 function CollapsibleMenu({ boardName, route, categories, setModalIsOpen }) {
   const [isActive, setActive] = useState(false);
-  const [subMenuActive, setSubMenuActive] = useState(false);
-  const [filterActive, setFilterActive] = useState(false);
+  // const [subMenuActive, setSubMenuActive] = useState(false);
+  // const [filterActive, setFilterActive] = useState(false);
 
-  // const params = useParams();
   const location = useLocation();
   const navigate = useNavigate();
-  const auth = getAuth();
-  const user = auth.currentUser;
 
   const { listItems, dispatch, isFiltered } = useContext(ListContext);
 
   useEffect(() => {
-    if (location.pathname.slice(1) == route) {
+    if (location.pathname.slice(1) === route) {
       setActive(true);
     } else {
       setActive(false);
     }
-  }, [location]);
+  }, [location, route]);
 
   const navigateOnClick = () => {
     if (!isActive) {
@@ -52,10 +44,10 @@ function CollapsibleMenu({ boardName, route, categories, setModalIsOpen }) {
       console.log(e.target.id);
       const filteredItems = filterListItemsByCategory(e.target.id, listItems);
       dispatch({ type: "FILTER_ITEMS", payload: filteredItems });
-      setFilterActive(true);
+      // setFilterActive(true);
     } else {
       dispatch({ type: "RESET_FILTER" });
-      setFilterActive(false);
+      // setFilterActive(false);
     }
   };
 
@@ -63,10 +55,10 @@ function CollapsibleMenu({ boardName, route, categories, setModalIsOpen }) {
     if (!isFiltered) {
       const filteredItems = listItems.filter((item) => item.data.isPriority);
       dispatch({ type: "FILTER_ITEMS", payload: filteredItems });
-      setFilterActive(true);
+      // setFilterActive(true);
     } else {
       dispatch({ type: "RESET_FILTER" });
-      setFilterActive(false);
+      // setFilterActive(false);
     }
   };
 
