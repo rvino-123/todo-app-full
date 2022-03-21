@@ -1,9 +1,8 @@
 import { useContext, useState } from "react";
 import { getAuth } from "firebase/auth";
-import { serverTimestamp } from "firebase/firestore";
 import { MdAddCircleOutline } from "react-icons/md";
 import { toast } from "react-toastify";
-import { getItems } from "../context/lists/ListActions";
+import { createItem, getItems } from "../context/lists/ListActions";
 import ListContext from "../context/lists/ListContext";
 
 function AddItem({ boardName, listLength }) {
@@ -37,10 +36,11 @@ function AddItem({ boardName, listLength }) {
     if (formDataCopy.description === "") {
       return toast.error("Can't Upload Empty Task");
     }
-
-    formData.createdAt = serverTimestamp();
     console.log(listLength);
     formData.rank = listLength + 1;
+
+    const newItem = await createItem(formData);
+
     const newItems = await getItems(user.uid);
     dispatch({ type: "GET_ITEMS", payload: newItems });
     setFormData((prevState) => ({
