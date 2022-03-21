@@ -1,5 +1,5 @@
 import Login from './pages/Login';
-import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
+import {BrowserRouter as Router, Routes, Route, Navigate} from 'react-router-dom'
 import Register from './pages/Register';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'
@@ -19,11 +19,9 @@ function App() {
       
     <Router>
       <Routes>
+      <Route path='/' element={<Navigate to={'/all-boards'}/>} />
       <Route path='/login' element={<Login />} />
       <Route path='/register' element={<Register />} />
-      <Route path='/' element={<PrivateRoute />}>
-        <Route path='/all-boards' element={<Home />} />
-      </Route>
       <Route path='/all-boards' element={<PrivateRoute />}>
         <Route path='/all-boards' element={<Home />} />
       </Route>
