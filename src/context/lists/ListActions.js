@@ -41,6 +41,17 @@ export const getListItemById = async(itemId) => {
     return item;
 }
 
+export const createItem = async (formData) => {
+  const id = uuid4()
+  formData.createdAt = serverTimestamp()
+
+  try {
+    await setDoc(doc(db, "items", id), formData)
+  } catch (err) {
+    console.log(err)
+  }
+}
+
 export const editListItem = async (itemId, editedItem) => {
     let formData = editedItem;
 
