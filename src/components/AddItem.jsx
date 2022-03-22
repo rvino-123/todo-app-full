@@ -39,8 +39,6 @@ function AddItem({ boardName, listLength }) {
     console.log(listLength);
     formData.rank = listLength + 1;
 
-    const newItem = await createItem(formData);
-
     const newItems = await getItems(user.uid);
     dispatch({ type: "GET_ITEMS", payload: newItems });
     setFormData((prevState) => ({
