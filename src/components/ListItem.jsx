@@ -79,6 +79,13 @@ function ListItemSingle({ listItem, listId }) {
         <span>{description}</span>
       </div>
       <div className="icons-list">
+        {categoryRef && (
+          <SelectCategory
+            listItemId={listId}
+            board={listItem?.board}
+            currentCategoryId={categoryRef}
+          />
+        )}
         {isDone ? (
           <MdFlag size={"24px"} color={"grey"} />
         ) : isPriority ? (
@@ -90,13 +97,19 @@ function ListItemSingle({ listItem, listId }) {
             onClick={handlePriority}
           />
         )}
+
         {hover && (
           <>
-            <SelectCategory
-              listItemId={listId}
-              board={listItem?.board}
-              currentCategoryId={categoryRef}
-            />
+            {categoryRef ? (
+              <></>
+            ) : (
+              <SelectCategory
+                listItemId={listId}
+                board={listItem?.board}
+                currentCategoryId={categoryRef}
+              />
+            )}
+
             <MdOutlineDelete size={"22px"} onClick={handleDelete} />
           </>
         )}
