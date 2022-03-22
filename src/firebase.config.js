@@ -5,6 +5,8 @@ import {getFirestore} from "firebase/firestore"
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
+
+console.log(process.env.NODE_ENV)
 const firebaseConfig = {
   apiKey: "AIzaSyCwzCr1v7MwwbstZmscbfxDFizI_yzoEco",
   authDomain: "todo-app-30d30.firebaseapp.com",
@@ -13,6 +15,8 @@ const firebaseConfig = {
   messagingSenderId: "1032137007425",
   appId: "1:1032137007425:web:63e04f7933de4aab4081c0"
 };
+
+
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig); // eslint-disable-line no-use-before-define
