@@ -2,6 +2,7 @@ import { getAuth } from "firebase/auth";
 import { useContext, useEffect } from "react";
 import SideNav from "../components/SideNav";
 import SingleBoard from "../components/SingleBoard";
+import UserContainer from "../components/UserContainer";
 import { getCategories, getItems } from "../context/lists/ListActions";
 import ListContext from "../context/lists/ListContext";
 
@@ -26,6 +27,7 @@ function ProfessionalBoard() {
     <div className="container">
       <SideNav categories={categories} />
       <div className="dashboard">
+        <UserContainer />
         <SingleBoard boardName={"professional"} boardTitle={"Professional"} />
       </div>
     </div>
