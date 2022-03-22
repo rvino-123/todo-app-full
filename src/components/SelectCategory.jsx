@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import ListContext from "../context/lists/ListContext";
 import Modal from "react-modal/lib/components/Modal";
 import CategorySelector from "./CategorySelector";
@@ -19,11 +19,18 @@ const customStyles = {
 
 function SelectCategory({ listItemId, currentCategoryId, board }) {
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const { categories } = useContext(ListContext);
-  const [currentCategory] = useState(
-    categories.filter((cat) => cat.id === currentCategoryId)[0]
-  );
+  const [currentCategory, setCurrentCategory] = useState();
+
+  useEffect(() => {
+    setLoading(true);
+    setCurrentCategory(
+      categories.filter((cat) => cat.id === currentCategoryId)[0]
+    );
+    setLoading(false);
+  }, [currentCategoryId, categories]);
 
   const openModal = async () => {
     setModalIsOpen(true);
@@ -31,6 +38,10 @@ function SelectCategory({ listItemId, currentCategoryId, board }) {
   const closeModal = () => {
     setModalIsOpen(false);
   };
+
+  if (loading) {
+    return <></>;
+  }
   return (
     <>
       {currentCategoryId ? (
@@ -38,9 +49,7 @@ function SelectCategory({ listItemId, currentCategoryId, board }) {
           className="show-category"
           onClick={openModal}
           style={{
-            backgroundColor: `${
-              currentCategory ? currentCategory.data?.color : ""
-            }`,
+            backgroundColor: `${currentCategory && currentCategory.data.color}`,
             border: "none",
           }}
         ></div>
