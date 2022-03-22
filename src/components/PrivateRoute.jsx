@@ -5,7 +5,7 @@ const PrivateRoute = () => {
   const { loggedIn, checkingStatus } = useAuthStatus();
 
   if (checkingStatus) {
-    return <h1>Hi</h1>;
+    return <>Checking if logged in.....</>;
   }
 
   return loggedIn ? <Outlet /> : <Navigate to="/login" />;

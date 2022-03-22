@@ -38,7 +38,9 @@ function SelectCategory({ listItemId, currentCategoryId, board }) {
           className="show-category"
           onClick={openModal}
           style={{
-            backgroundColor: `${currentCategory.data.color}`,
+            backgroundColor: `${
+              currentCategory ? currentCategory.data?.color : ""
+            }`,
             border: "none",
           }}
         ></div>
