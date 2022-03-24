@@ -1,6 +1,6 @@
 import { getAuth } from "firebase/auth";
 import { serverTimestamp } from "firebase/firestore";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { MdFlag, MdOutlinedFlag, MdOutlineDelete } from "react-icons/md";
 import {
   editListItem,
@@ -60,6 +60,10 @@ function ListItemSingle({ listItem, listId }) {
     dispatch({ type: "GET_ITEMS", payload: newLists });
   };
 
+  useEffect(() => {
+    return () => setHover(false);
+  }, [categoryRef]);
+
   const handleMouseEnter = () => {
     setHover(true);
   };
@@ -107,6 +111,8 @@ function ListItemSingle({ listItem, listId }) {
                 listItemId={listId}
                 board={listItem?.board}
                 currentCategoryId={categoryRef}
+                setHover={setHover}
+                hover={hover}
               />
             )}
 
