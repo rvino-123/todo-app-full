@@ -111,8 +111,6 @@ function ListItemSingle({ listItem, listId }) {
                 listItemId={listId}
                 board={listItem?.board}
                 currentCategoryId={categoryRef}
-                setHover={setHover}
-                hover={hover}
               />
             )}
 
