@@ -24,6 +24,11 @@ const listReducer = (state, action) => {
                 note: action.payload,
                 loading:false
             }
+        case 'CLEAR_NOTE':
+            return {
+                ...state,
+                note: {}
+            }
         case 'GET_ITEM':
             return {
                 ...state,
