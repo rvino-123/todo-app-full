@@ -1,15 +1,15 @@
-import Login from './pages/Login';
+import Login from './pages/Login/Index';
 import {BrowserRouter as Router, Routes, Route, Navigate} from 'react-router-dom'
-import Register from './pages/Register';
+import Register from './pages/Register/index';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'
-import PrivateRoute from './components/PrivateRoute';
+import PrivateRoute from './components/PrivateRoute/index';
 import Home from './pages/Home';
 import {ListProvider} from './context/lists/ListContext'
-import PersonalBoard from './pages/PersonalBoard';
-import ProfessionalBoard from './pages/ProfessionalBoard';
-import ManageCategories from './pages/ManageCategories';
+import PersonalBoard from './pages/personal/index';
+import ProfessionalBoard from './pages/professional/index';
 import Modal from 'react-modal'
+import Categories from './pages/categories';
 
 Modal.setAppElement('#root');
 
@@ -32,7 +32,7 @@ function App() {
         <Route path='/professional' element={<ProfessionalBoard />} />
       </Route>
       <Route path='/categories' element={<PrivateRoute />}>
-        <Route path='/categories' element={<ManageCategories />} />
+        <Route path='/categories' element={<Categories />} />
       </Route>
       </Routes>
       </Router>

@@ -195,7 +195,11 @@ export const editNote = async (noteId, itemRef, formData) => {
   formData["editedAt"] = serverTimestamp()
   formData["itemRef"] = itemRef;
   try {
-    await setDoc(doc(db, "notes", noteId), formData)
+    const result = await setDoc(doc(db, "notes", noteId), formData)
+    console.log(result)
+    if (result) {
+      return result;
+    }
   } catch (err) {
     console.log(err)
   }
