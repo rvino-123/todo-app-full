@@ -28,7 +28,7 @@ export const getItems = async (userId) => {
         });
       });
 
-      const sortedItems = items.sort((a,b) => (a.data.rank > b.data.rank ? 1 : -1));
+      const sortedItems = items.sort((a,b) => (a.data.rank > b.data.rank ? 1 : -1)).sort((a,b) => (a.data.isDone - b.data.isDone))
       return sortedItems
 
     } catch (err) {
