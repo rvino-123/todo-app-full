@@ -63,7 +63,7 @@ function AddItem({ boardName, listLength }) {
       return toast.error("Can't Upload Empty Task");
     }
     console.log(listLength);
-    formData.rank = listLength + 1;
+    formData.rank = 0;
 
     await createItem(formData);
 
