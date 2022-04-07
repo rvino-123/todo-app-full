@@ -6,6 +6,7 @@ import {
   getCategories,
   editCategory,
   getCategory,
+  getItems,
 } from "../../context/lists/ListActions";
 import ListContext from "../../context/lists/ListContext";
 import { MdAddCircleOutline, MdOutlineDelete } from "react-icons/md";
@@ -92,6 +93,7 @@ function CategoryTable() {
   const [editModalIsOpen, setEditModalIsOpen] = useState(false);
 
   const { categories, category, dispatch } = useContext(ListContext);
+
   const auth = getAuth();
   const user = auth.currentUser;
 
@@ -118,7 +120,15 @@ function CategoryTable() {
 
     setEditModalIsOpen(true);
   };
-  const closeEditModal = () => setEditModalIsOpen(false);
+  const closeEditModal = () => {
+    setEditModalIsOpen(false);
+    setEditCategoryForm({
+      name: "",
+      color: "",
+      board: "",
+      userRef: user.uid,
+    });
+  };
 
   useEffect(() => {
     const addCategories = async (userId) => {
@@ -130,6 +140,14 @@ function CategoryTable() {
   }, [dispatch, user.uid]);
 
   const handleDelete = async (e) => {
+    const listItems = await getItems(user.uid);
+    console.log(listItems);
+    const foundItem = listItems.find((x) => x.data.categoryRef === e.target.id);
+    if (foundItem) {
+      return toast.error(
+        "Please unlink this category from all list items before proceding."
+      );
+    }
     await deleteCategory(e.target.id);
     const results = await getCategories(user.uid);
     dispatch({ type: "GET_CATEGORIES", payload: results });

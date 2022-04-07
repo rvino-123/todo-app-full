@@ -3,7 +3,7 @@ import colors from '../../../theme/colors';
 
 export const StyledContainer = styled.div`
   display: flex;
-  justify-content: right;
+  justify-content: end;
   gap: 1rem;
   font-weight: 700;
   align-items: center;
