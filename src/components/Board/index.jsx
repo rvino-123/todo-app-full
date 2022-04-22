@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import colors from "../../theme/colors";
+import styled from 'styled-components'
+import colors from '../../theme/colors'
 
 export const Board = styled.div`
   background: ${colors.battleshipGrey};
@@ -8,4 +8,4 @@ export const Board = styled.div`
   flex-direction: column;
   width: 100%;
   height: 100%;
-`;
+`
