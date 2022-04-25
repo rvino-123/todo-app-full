@@ -1,9 +1,10 @@
-import { useContext, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import ListContext from "../../context/lists/ListContext";
 import ListItem from "../ListItem/index";
 import AddItem from "../AddItem";
 import styled from "styled-components";
 import colors from "../../theme/colors";
+import { useLocation } from "react-router-dom";
 
 const StyledContainer = styled.div`
   background: ${colors.white};
@@ -15,14 +16,33 @@ const StyledContainer = styled.div`
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 `;
 
-function ListContent({ boardName }) {
+function ListContent({ boardName, completed }) {
+  const location = useLocation();
   const { listItems, filteredItems, isFiltered } = useContext(ListContext);
+  const completedItems = listItems.filter((listItem) => listItem.data.isDone);
+  const [hidden, setHidden] = useState(false);
   const [currentboardName] = useState(boardName);
-  const listLength = useRef(null);
-  listLength.current = listItems.length;
-  console.log(listLength);
 
-  // if (isSingleView) {
+  useEffect(() => {
+    const checkIfHidden = () => {
+      if (
+        completed &&
+        completedItems.filter((listItem) => listItem.data.board === boardName)
+          .length === 0
+      ) {
+        setHidden(true);
+      } else {
+        setHidden(false);
+      }
+    };
+
+    checkIfHidden();
+  }, [completedItems]);
+
+  if (hidden) {
+    return <></>;
+  }
+
   return (
     <StyledContainer>
       {isFiltered ? (
@@ -30,7 +50,15 @@ function ListContent({ boardName }) {
           {filteredItems &&
             filteredItems
               .filter((listitems) => {
-                return listitems.data.board === boardName;
+                if (completed) {
+                  return (
+                    listitems.data.board === boardName && listitems.data.isDone
+                  );
+                } else {
+                  return (
+                    listitems.data.board === boardName && !listitems.data.isDone
+                  );
+                }
               })
               .map((item) => {
                 // console.log(item);
@@ -48,7 +76,15 @@ function ListContent({ boardName }) {
           {listItems &&
             listItems
               .filter((listitems) => {
-                return listitems.data.board === boardName;
+                if (completed) {
+                  return (
+                    listitems.data.board === boardName && listitems.data.isDone
+                  );
+                } else {
+                  return (
+                    listitems.data.board === boardName && !listitems.data.isDone
+                  );
+                }
               })
               .map((item) => {
                 // console.log(item);
@@ -63,7 +99,7 @@ function ListContent({ boardName }) {
         </>
       )}
 
-      <AddItem boardName={currentboardName} listLength={listLength.current} />
+      {completed ? "" : <AddItem boardName={currentboardName} />}
     </StyledContainer>
   );
 }

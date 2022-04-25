@@ -63,11 +63,13 @@ function Home() {
         >
           <Board>
             <BoardTitle>Personal</BoardTitle>
-            <ListContent boardName={"personal"} />
+            <ListContent boardName={"personal"} completed={false} />
+            <ListContent boardName={"personal"} completed={true} />
           </Board>
           <Board>
             <BoardTitle>Professional</BoardTitle>
-            <ListContent boardName={"professional"} />
+            <ListContent boardName={"professional"} completed={false} />
+            <ListContent boardName={"professional"} completed={true} />
           </Board>
         </div>
       </div>

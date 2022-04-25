@@ -63,7 +63,7 @@ function PersonalBoard() {
         >
           <Board>
             <BoardTitle>Professional</BoardTitle>
-            <ListContent boardName={"professional"} />
+            <ListContent boardName={"professional"} completed={false} />
           </Board>
           <Board>
             <BoardTitle>Notes</BoardTitle>
