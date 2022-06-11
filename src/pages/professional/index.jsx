@@ -9,6 +9,8 @@ import ListContent from "../../components/ListContent";
 import styled from "styled-components";
 import colors from "../../theme/colors";
 import NotePad from "../../components/NotePad";
+import { BoardTitle } from "../../components/BoardTitle";
+import { BoardContainer } from "../../components/BoardContainer";
 
 const StyledContainer = styled.div`
   height: 100vh;
@@ -16,15 +18,6 @@ const StyledContainer = styled.div`
   background: ${colors.white};
   grid-template-columns: 22% auto;
   grid-template-rows: auto;
-`;
-const BoardTitle = styled.div`
-  padding: 2rem;
-  border-radius: 0.5rem;
-  text-align: center;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  background: ${colors.white};
-  font-weight: bold;
-  font-size: 28px;
 `;
 
 function PersonalBoard() {
@@ -45,7 +38,7 @@ function PersonalBoard() {
     // getEntity("items", user.uid, setListItems);
   }, [dispatch, user.uid]);
   return (
-    <StyledContainer>
+    <BoardContainer>
       <SideNav />
       <div style={{ display: "flex", flexDirection: "column" }}>
         <Header />
@@ -71,7 +64,7 @@ function PersonalBoard() {
           </Board>
         </div>
       </div>
-    </StyledContainer>
+    </BoardContainer>
   );
 }
 

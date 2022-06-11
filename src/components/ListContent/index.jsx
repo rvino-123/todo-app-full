@@ -2,21 +2,10 @@ import { useContext, useEffect, useRef, useState } from "react";
 import ListContext from "../../context/lists/ListContext";
 import ListItem from "../ListItem/index";
 import AddItem from "../AddItem";
-import styled from "styled-components";
-import colors from "../../theme/colors";
+import { StyledContainer } from "./styles";
 import { useLocation } from "react-router-dom";
 
-const StyledContainer = styled.div`
-  background: ${colors.white};
-  display: flex;
-  padding: 1rem;
-  border-radius: 0.5rem;
-  flex-direction: column;
-  margin-top: 1rem;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-`;
-
-function ListContent({ boardName, completed }) {
+const ListContent = ({ boardName, completed }) => {
   const location = useLocation();
   const { listItems, filteredItems, isFiltered } = useContext(ListContext);
   const completedItems = listItems.filter((listItem) => listItem.data.isDone);
@@ -102,7 +91,7 @@ function ListContent({ boardName, completed }) {
       {completed ? "" : <AddItem boardName={currentboardName} />}
     </StyledContainer>
   );
-}
+};
 
 //   return (
 //     <div className="board-content">

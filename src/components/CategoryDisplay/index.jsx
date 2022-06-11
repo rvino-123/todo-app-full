@@ -103,5 +103,3 @@ function CategoryDisplay({ listItemId, currentCategoryId, board }) {
 }
 
 export default CategoryDisplay;
-
-// Specify PropTypes

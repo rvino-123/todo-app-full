@@ -4,28 +4,10 @@ import Header from "../../components/layout/Header";
 import { getAuth } from "firebase/auth";
 import ListContext from "../../context/lists/ListContext";
 import { getItems, getCategories } from "../../context/lists/ListActions";
-import styled from "styled-components";
-import colors from "../../theme/colors";
+import { BoardTitle } from "../../components/BoardTitle";
+import { BoardContainer } from "../../components/BoardContainer";
 import { Board } from "../../components/Board/index";
 import ListContent from "../../components/ListContent/index";
-
-const StyledContainer = styled.div`
-  height: 100vh;
-  display: grid;
-  background: ${colors.white};
-  grid-template-columns: 22% auto;
-  grid-template-rows: auto;
-`;
-
-const BoardTitle = styled.div`
-  padding: 2rem;
-  border-radius: 0.5rem;
-  text-align: center;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  background: ${colors.white};
-  font-weight: bold;
-  font-size: 28px;
-`;
 
 function Home() {
   const auth = getAuth();
@@ -45,11 +27,10 @@ function Home() {
   }, [dispatch, user.uid]);
 
   return (
-    <StyledContainer>
+    <BoardContainer>
       <SideNav />
       <div style={{ display: "flex", flexDirection: "column" }}>
         <Header />
-        {/* <AllBoards listItems={listItems} /> */}
         <div
           style={{
             display: "flex",
@@ -73,7 +54,7 @@ function Home() {
           </Board>
         </div>
       </div>
-    </StyledContainer>
+    </BoardContainer>
   );
 }
 

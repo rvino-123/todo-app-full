@@ -1,7 +1,12 @@
 import { getAuth } from "firebase/auth";
 import { serverTimestamp } from "firebase/firestore";
 import { useContext, useEffect, useState } from "react";
-import { MdFlag, MdOutlinedFlag, MdOutlineDelete } from "react-icons/md";
+import {
+  MdFlag,
+  MdOutlinedFlag,
+  MdOutlineDelete,
+  MdOutlineInfo,
+} from "react-icons/md";
 import {
   editListItem,
   getItems,
@@ -103,7 +108,6 @@ function ListItem({ listItem, listId }) {
     <StyledContainer
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      onClick={handleClick}
     >
       <ListStyle
         textDecoration={isDone ? "line-through" : ""}
@@ -120,6 +124,7 @@ function ListItem({ listItem, listId }) {
             currentCategoryId={categoryRef}
           />
         )}
+        <MdOutlineInfo size={"24px"} onClick={handleClick} />
         {isDone ? (
           <MdFlag size={"24px"} color={"grey"} />
         ) : isPriority ? (

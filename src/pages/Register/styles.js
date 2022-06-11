@@ -4,6 +4,15 @@ import Card from "../../components/Card";
 import { Input } from "../../components/Forms/standalone/Input";
 import colors from "../../theme/colors";
 
+export const StyledContainer = styled.div`
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: ${colors.darkBlue};
+`;
+
 export const StyledButton = styled(Button)`
     border-radius: 4px;
     height: 50px;

@@ -1,21 +1,11 @@
 import RegisterForm from "./RegisterForm";
-import styled from "styled-components";
-import colors from "../../theme/colors";
-
-const Container = styled.div`
-  height: 100vh;
-  width: 100vw;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: ${colors.darkBlue};
-`;
+import { StyledContainer } from "./styles";
 
 function Register() {
   return (
-    <Container>
+    <StyledContainer>
       <RegisterForm />
-    </Container>
+    </StyledContainer>
   );
 }
 
