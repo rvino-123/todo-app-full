@@ -1,18 +1,9 @@
-import styled from "styled-components";
-import colors from "../../../theme/colors";
+import { StyledContainer } from "./styles";
 import NavCategoryItem from "../../NavCategoryItem";
 import NavItemSingle from "../../NavItemSingle";
 import Accordion from "../../Accordion";
 import { useContext } from "react";
 import ListContext from "../../../context/lists/ListContext";
-
-const StyledContainer = styled.div`
-  background: ${colors.darkBlue};
-  color: ${colors.white};
-  display: flex;
-  flex-direction: column;
-  padding: 2rem;
-`;
 
 const boardRoutes = [
   {
@@ -38,10 +29,8 @@ function SideNav() {
 
   const handleClick = () => {};
   return (
-
-
     <StyledContainer>
-      <div style={{height: "10%"}}>
+      <div style={{ height: "10%" }}>
         <h2>Dashboard</h2>
       </div>
       <Accordion name={boardRoutes[0].name} route={boardRoutes[0].route}>

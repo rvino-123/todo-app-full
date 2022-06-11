@@ -5,27 +5,10 @@ import Header from "../../components/layout/Header";
 import { getCategories, getItems } from "../../context/lists/ListActions";
 import ListContext from "../../context/lists/ListContext";
 import { Board } from "../../components/Board/index";
+import { BoardTitle } from "../../components/BoardTitle";
 import ListContent from "../../components/ListContent";
-import styled from "styled-components";
-import colors from "../../theme/colors";
+import { BoardContainer } from "../../components/BoardContainer";
 import NotePad from "../../components/NotePad";
-
-const StyledContainer = styled.div`
-  height: 100vh;
-  display: grid;
-  background: ${colors.white};
-  grid-template-columns: 22% auto;
-  grid-template-rows: auto;
-`;
-const BoardTitle = styled.div`
-  padding: 2rem;
-  border-radius: 0.5rem;
-  text-align: center;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  background: ${colors.white};
-  font-weight: bold;
-  font-size: 28px;
-`;
 
 function PersonalBoard() {
   const { note, dispatch } = useContext(ListContext);
@@ -45,7 +28,7 @@ function PersonalBoard() {
     // getEntity("items", user.uid, setListItems);
   }, [dispatch, user.uid]);
   return (
-    <StyledContainer>
+    <BoardContainer>
       <SideNav />
       <div style={{ display: "flex", flexDirection: "column" }}>
         <Header />
@@ -71,7 +54,7 @@ function PersonalBoard() {
           </Board>
         </div>
       </div>
-    </StyledContainer>
+    </BoardContainer>
   );
 }
 

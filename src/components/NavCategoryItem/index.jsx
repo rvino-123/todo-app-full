@@ -2,23 +2,11 @@ import { useState, useEffect, useContext } from "react";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 import { useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import styled from "styled-components";
 import ListContext from "../../context/lists/ListContext";
-import colors from "../../theme/colors";
 import { ColorIcon } from "../ColorIcon";
+import { StyledContainer } from "./styles";
 
-const StyledContainer = styled.div`
-  padding: 1rem 0;
-  font-weight: 300;
-  font-size: 14px;
-  display: flex;
-  justify-content: space-between;
-  border-bottom: 1px solid
-    ${(props) => (props.active ? colors.hotPink : colors.black)};
-  color: ${(props) => (props.active ? colors.hotPink : colors.white)};
-`;
-
-function NavCategoryItem({ category, categoryId }) {
+const NavCategoryItem = ({ category, categoryId }) => {
   const [isActive, setActive] = useState(false);
 
   const { dispatch, listItems, filteredItems } = useContext(ListContext);
@@ -63,6 +51,6 @@ function NavCategoryItem({ category, categoryId }) {
       <ColorIcon color={category?.color} active={isActive} />
     </StyledContainer>
   );
-}
+};
 
 export default NavCategoryItem;

@@ -126,7 +126,6 @@ function LoginForm() {
         </div>
 
         <div style={{ marginBottom: "2rem" }}>
-          {/* <button className="btn">Login</button> */}
           <StyledButton>Log In</StyledButton>
         </div>
       </form>

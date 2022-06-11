@@ -8,7 +8,7 @@ const StyledContainer = styled.div`
   height: 100vh;
   display: grid;
   background: ${colors.white};
-  grid-template-columns: 22% auto;
+  grid-template-columns: 20% auto;
   grid-template-rows: auto;
 `;
 
