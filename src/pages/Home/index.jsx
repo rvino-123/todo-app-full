@@ -3,16 +3,18 @@ import SideNav from "../../components/layout/Sidenav";
 import Header from "../../components/layout/Header";
 import { getAuth } from "firebase/auth";
 import ListContext from "../../context/lists/ListContext";
+import UserContext from "../../context/users/UserContext";
 import { getItems, getCategories } from "../../context/lists/ListActions";
 import { BoardTitle } from "../../components/BoardTitle";
 import { BoardContainer } from "../../components/BoardContainer";
 import { Board } from "../../components/Board/index";
 import ListContent from "../../components/ListContent/index";
 
-function Home() {
+const Home = () => {
   const auth = getAuth();
   const user = auth.currentUser;
-  const { listItems, dispatch, categories } = useContext(ListContext);
+  const { dispatch } = useContext(ListContext);
+  // const { currentUser } = useContext(UserContext);
 
   useEffect(() => {
     dispatch({ type: "SET_LOADING" });
@@ -56,6 +58,6 @@ function Home() {
       </div>
     </BoardContainer>
   );
-}
+};
 
 export default Home;

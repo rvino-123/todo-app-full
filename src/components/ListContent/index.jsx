@@ -6,7 +6,6 @@ import { StyledContainer } from "./styles";
 import { useLocation } from "react-router-dom";
 
 const ListContent = ({ boardName, completed }) => {
-  const location = useLocation();
   const { listItems, filteredItems, isFiltered } = useContext(ListContext);
   const completedItems = listItems.filter((listItem) => listItem.data.isDone);
   const [hidden, setHidden] = useState(false);
@@ -92,23 +91,5 @@ const ListContent = ({ boardName, completed }) => {
     </StyledContainer>
   );
 };
-
-//   return (
-//     <div className="board-content">
-//       {listItems &&
-//         listItems
-//           .filter((listitems) => {
-//             return listitems.data.board == boardName;
-//           })
-//           .map((item, index) => {
-//             // console.log(item);
-//             return (
-//               <ListItem key={item.id} listItem={item.data} listId={item.id} />
-//             );
-//           })}
-//       <AddItem boardName={currentboardName} listLength={listLength.current} />
-//     </div>
-//   );
-// }
 
 export default ListContent;

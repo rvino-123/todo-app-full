@@ -3,37 +3,7 @@ import ListContext from "../../context/lists/ListContext";
 import Modal from "react-modal/lib/components/Modal";
 import CategorySelector from "../CategorySelector";
 import { MdAddCircleOutline } from "react-icons/md";
-import styled from "styled-components";
-import colors from "../../theme/colors";
-import { Button } from "../Button/Button";
-
-const StyledContainer = styled.div`
-  width: 18px;
-  height: 18px;
-  border: 1px solid ${colors.black};
-  border-radius: 50%;
-`;
-
-const StyledButton = styled(Button)`
-  color: ${colors.white};
-  width: 8rem;
-  height: 3rem;
-  font-size: 18px;
-  border-radius: 1rem;
-`;
-
-const customStyles = {
-  content: {
-    width: "500px",
-    top: "50%",
-    left: "50%",
-    right: "auto",
-    bottom: "auto",
-    marginRight: "-50%",
-    transform: "translate(-50%, -50%)",
-    position: "relative",
-  },
-};
+import { StyledContainer, StyledButton, customStyles } from "./styles";
 
 function CategoryDisplay({ listItemId, currentCategoryId, board }) {
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -43,6 +13,7 @@ function CategoryDisplay({ listItemId, currentCategoryId, board }) {
   const [currentCategory, setCurrentCategory] = useState();
 
   useEffect(() => {
+    // TODO: Could this be a function or passed on as Prop?
     setLoading(true);
     setCurrentCategory(
       categories.filter((cat) => cat.id === currentCategoryId)[0]
@@ -58,7 +29,7 @@ function CategoryDisplay({ listItemId, currentCategoryId, board }) {
   };
 
   if (loading) {
-    return <></>;
+    return <>Loading...</>;
   }
   return (
     <>

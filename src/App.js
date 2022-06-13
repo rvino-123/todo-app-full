@@ -6,6 +6,7 @@ import 'react-toastify/dist/ReactToastify.css'
 import PrivateRoute from './components/PrivateRoute/index';
 import Home from './pages/Home';
 import {ListProvider} from './context/lists/ListContext'
+import { UserProvider } from './context/users/UserContext';
 import PersonalBoard from './pages/personal/index';
 import ProfessionalBoard from './pages/professional/index';
 import Modal from 'react-modal'
@@ -15,6 +16,7 @@ Modal.setAppElement('#root');
 
 function App() {
   return (
+    <UserProvider >
     <ListProvider>
       
     <Router>
@@ -39,6 +41,7 @@ function App() {
 
       <ToastContainer />
     </ListProvider>
+    </UserProvider>
     
   );
 }

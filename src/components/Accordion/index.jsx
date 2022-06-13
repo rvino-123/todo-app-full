@@ -4,7 +4,6 @@ import {
   MdOutlineKeyboardArrowRight,
 } from "react-icons/md";
 import { useLocation, useNavigate } from "react-router-dom";
-import styled from "styled-components";
 import colors from "../../theme/colors";
 import { Row, Panel, StyledContainer, StyledText } from "./styles";
 
@@ -30,8 +29,6 @@ function Accordion({ children, name, route }) {
 
   const handleNavigate = () =>
     routeMatched ? setOpen(!open) : navigate(`/${route}`);
-  console.log(location.pathname === route);
-  console.log(route);
 
   return (
     <StyledContainer>

@@ -42,7 +42,6 @@ function NotePad({}) {
       ...prevState,
       description: e.target.value,
     }));
-    console.log(editNoteForm);
   };
 
   const handleErase = (e) => {
