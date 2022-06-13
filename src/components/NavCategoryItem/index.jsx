@@ -11,10 +11,6 @@ const NavCategoryItem = ({ category, categoryId }) => {
 
   const { dispatch, listItems, filteredItems } = useContext(ListContext);
 
-  if (!category) {
-    console.log("no category");
-  }
-
   useEffect(() => {
     if (isActive) {
       if (filteredItems[0]?.data.categoryRef !== categoryId) {

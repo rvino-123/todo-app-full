@@ -71,6 +71,7 @@ const CategoryTable = () => {
   useEffect(() => {
     const addCategories = async (userId) => {
       const results = await getCategories(userId);
+      // TODO
       dispatch({ type: "GET_CATEGORIES", payload: results });
     };
 

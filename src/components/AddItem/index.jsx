@@ -42,7 +42,9 @@ function AddItem({ boardName, listLength }) {
 
     await createItem(formData);
 
+    // TODO
     const newItems = await getItems(user.uid);
+    console.log("request from additem component");
     dispatch({ type: "GET_ITEMS", payload: newItems });
     setFormData((prevState) => ({
       ...prevState,

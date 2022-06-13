@@ -4,23 +4,7 @@ import {
   MdOutlineKeyboardArrowRight,
 } from "react-icons/md";
 import { useLocation, useNavigate } from "react-router-dom";
-import styled from "styled-components";
-import colors from "../../theme/colors";
-
-const StyledContainer = styled.div`
-  padding: 1rem 0;
-  font-weight: 300;
-  font-size: 14px;
-  display: flex;
-  justify-content: space-between;
-  border-bottom: 1px solid
-    ${(props) => (props.active ? colors.hotPink : colors.black)};
-  color: ${(props) => (props.active ? colors.hotPink : colors.white)};
-`;
-
-const StyledText = styled.div`
-  color: ${(props) => props.color};
-`;
+import { StyledContainer, StyledText } from "./styles";
 
 function NavItemSingle({ name, route }) {
   const [isActive, setActive] = useState(false);

@@ -14,6 +14,7 @@ function CategorySelector({ currentCategory, board, listItem }) {
   const { categories, dispatch } = useContext(ListContext);
 
   const handleClick = async (e) => {
+    // TODO: Requests all items again.
     await addCategoryToListItem(listItem, e.target.id);
     const allItems = await getItems(user.uid);
     dispatch({ type: "GET_ITEMS", payload: allItems });

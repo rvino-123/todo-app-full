@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaUserCircle } from "react-icons/fa";
 import {
@@ -12,13 +12,18 @@ import {
   StyledContainer,
   UserContainer,
 } from "./styles";
+import { useContext } from "react";
+import UserContext from "../../../context/users/UserContext";
 import { getAuth } from "firebase/auth";
 
 function Header() {
   const [active, setActive] = useState(false);
-  const auth = getAuth();
-  const user = auth.currentUser;
   const navigate = useNavigate();
+
+  // const auth = getAuth();
+  const { currentUser } = useContext(UserContext);
+
+  useEffect(() => {}, [currentUser]);
 
   const handleLogout = () => {
     navigate("/login");
@@ -32,7 +37,7 @@ function Header() {
       <UserContainer onClick={handleClick}>
         <FaUserCircle size={"44px"} color={"grey"} />
         <div style={{ display: "flex", alignItems: "center" }}>
-          <span>{user.displayName}</span>
+          <span>{currentUser?.name}</span>
           {active ? (
             <MdOutlineKeyboardArrowUp size={"20px"} />
           ) : (

@@ -15,27 +15,8 @@ import {
 } from "../../context/lists/ListActions";
 import ListContext from "../../context/lists/ListContext";
 import CategoryDisplay from "../CategoryDisplay";
-import styled from "styled-components";
 import colors from "../../theme/colors";
-
-const StyledContainer = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  padding: 0.5rem 0;
-  border-bottom: 1px solid black;
-  justify-content: space-between;
-`;
-
-const ListStyle = styled.div`
-  text-decoration: ${(props) => props.textDecoration};
-  color: ${(props) => props.textColor};
-`;
-
-const IconsContainer = styled.div`
-  display: flex;
-  gap: 5px;
-`;
+import { StyledContainer, ListStyle, IconsContainer } from "./styles";
 
 function ListItem({ listItem, listId }) {
   const { description, isDone, isPriority, categoryRef } = listItem;
@@ -56,6 +37,7 @@ function ListItem({ listItem, listId }) {
       formData["isDone"] = true;
       formData["rank"] = NUMBER_OF_NOTES + 1;
     }
+    // TO DO
     editList.EditedAt = serverTimestamp();
     await editListItem(listId, formData);
     const newLists = await getItems(user.uid);
@@ -63,6 +45,8 @@ function ListItem({ listItem, listId }) {
   };
 
   const handleClick = async (e) => {
+    // TODO
+    // Not sure if need to fix though
     const note = await getNotes(listId);
     if (!note) {
       await createNote({ description: "", itemRef: listId });
