@@ -17,6 +17,7 @@ import ListContext from "../../context/lists/ListContext";
 import CategoryDisplay from "../CategoryDisplay";
 import colors from "../../theme/colors";
 import { StyledContainer, ListStyle, IconsContainer } from "./styles";
+import { useLocation } from "react-router-dom";
 
 function ListItem({ listItem, listId }) {
   const { description, isDone, isPriority, categoryRef } = listItem;
@@ -25,6 +26,7 @@ function ListItem({ listItem, listId }) {
   const { dispatch, listItems } = useContext(ListContext);
   const auth = getAuth();
   const user = auth.currentUser;
+  const location = useLocation();
 
   const handleChecked = async () => {
     let formData = editList;
@@ -45,8 +47,6 @@ function ListItem({ listItem, listId }) {
   };
 
   const handleClick = async (e) => {
-    // TODO
-    // Not sure if need to fix though
     const note = await getNotes(listId);
     if (!note) {
       await createNote({ description: "", itemRef: listId });
@@ -108,7 +108,11 @@ function ListItem({ listItem, listId }) {
             currentCategoryId={categoryRef}
           />
         )}
-        <MdOutlineInfo size={"24px"} onClick={handleClick} />
+        {location.pathname !== "/all-boards" ? (
+          <MdOutlineInfo size={"24px"} onClick={handleClick} />
+        ) : (
+          ""
+        )}
         {isDone ? (
           <MdFlag size={"24px"} color={"grey"} />
         ) : isPriority ? (

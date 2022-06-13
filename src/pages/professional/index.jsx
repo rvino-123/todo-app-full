@@ -26,6 +26,7 @@ function PersonalBoard() {
   const user = auth.currentUser;
 
   useEffect(() => {
+    dispatch({ type: "CLEAR_NOTE" });
     dispatch({ type: "SET_LOADING" });
     const getListItemsAndCategories = async () => {
       const listData = await getItems(user.uid);

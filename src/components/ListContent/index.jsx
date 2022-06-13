@@ -6,7 +6,8 @@ import { StyledContainer } from "./styles";
 import { useLocation } from "react-router-dom";
 
 const ListContent = ({ boardName, completed }) => {
-  const { listItems, filteredItems, isFiltered } = useContext(ListContext);
+  const { listItems, filteredItems, isFiltered, dispatch } =
+    useContext(ListContext);
   const completedItems = listItems.filter((listItem) => listItem.data.isDone);
   const [hidden, setHidden] = useState(false);
   const [currentboardName] = useState(boardName);
@@ -23,6 +24,8 @@ const ListContent = ({ boardName, completed }) => {
         setHidden(false);
       }
     };
+
+    // dispatch({ type: "CLEAR_NOTE" });
 
     checkIfHidden();
   }, [completedItems]);

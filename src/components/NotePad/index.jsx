@@ -13,16 +13,8 @@ function NotePad({}) {
   });
 
   useEffect(() => {
-    const setNoteAfterEdit = async () => {
-      const newNote = await getNotes(note.data?.itemRef);
-      dispatch({ type: "GET_NOTE", payload: newNote });
-      console.log("launched");
-    };
-
-    console.log("useEffect fired");
-
-    setNoteAfterEdit();
-  }, [editMode, dispatch, note.length, note.data?.itemRef]);
+    console.log(note);
+  }, [editMode, note]);
 
   const handleClick = () => {
     editMode ? setEditMode(false) : setEditMode(true);
@@ -35,6 +27,8 @@ function NotePad({}) {
     await editNote(note.id, note.data.itemRef, editNoteForm);
     setEditMode(false);
     setEditNoteForm({ description: "" });
+    const newNote = await getNotes(note.data?.itemRef);
+    dispatch({ type: "GET_NOTE", payload: newNote });
   };
 
   const handleChange = (e) => {
