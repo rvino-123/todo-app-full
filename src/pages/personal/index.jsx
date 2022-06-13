@@ -16,6 +16,7 @@ function PersonalBoard() {
   const user = auth.currentUser;
 
   useEffect(() => {
+    dispatch({ type: "CLEAR_NOTE" });
     dispatch({ type: "SET_LOADING" });
     const getListItemsAndCategories = async () => {
       const listData = await getItems(user.uid);
@@ -24,6 +25,7 @@ function PersonalBoard() {
       dispatch({ type: "GET_CATEGORIES", payload: categories });
     };
     getListItemsAndCategories();
+    console.log("clearning note");
 
     // getEntity("items", user.uid, setListItems);
   }, [dispatch, user.uid]);

@@ -14,7 +14,6 @@ import {
 } from "./styles";
 import { useContext } from "react";
 import UserContext from "../../../context/users/UserContext";
-import { getAuth } from "firebase/auth";
 
 function Header() {
   const [active, setActive] = useState(false);
