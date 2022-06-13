@@ -33,7 +33,8 @@ export const getItems = async (userId) => {
 
     const sortedItems = items
       .sort((a, b) => (a.data.createdAt < b.data.createdAt ? 1 : -1))
-      .sort((a, b) => a.data.isDone - b.data.isDone);
+      // .sort((a, b) => a.data.isDone - b.data.isDone)
+      .sort((a, b) => b.data.isPriority - a.data.isPriority)
     return sortedItems;
   } catch (err) {
     console.log(err);
