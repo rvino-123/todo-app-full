@@ -13,7 +13,6 @@ import Modal from 'react-modal'
 import Categories from './pages/categories';
 
 Modal.setAppElement('#root');
-
 function App() {
   return (
     <UserProvider >

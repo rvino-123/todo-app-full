@@ -10,6 +10,7 @@ import { BoardContainer } from "../../components/BoardContainer";
 import { Board } from "../../components/Board/index";
 import ListContent from "../../components/ListContent/index";
 
+alert(process.env.REACT_APP_FB_API_KEY);
 const Home = () => {
   const auth = getAuth();
   const user = auth.currentUser;
