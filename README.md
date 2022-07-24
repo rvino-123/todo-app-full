@@ -1,70 +1,49 @@
-# Getting Started with Create React App
+# (Yet Another) ToDo App with React
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## About
 
-## Available Scripts
+This is my first project in React, it is a ToDo app where you can split your personal tasks and professional tasks into different boards.
 
-In the project directory, you can run:
+- You can view your Personal Board or Professional Board together or seperately.
+- You can create and manage custom categories for each board and filter tasks by category.
+- You are authenticated via and password.
+- your data is stored in the firebase Firestore for quick storage and retreival.
 
-### `npm start`
+**Please do not enter any sensitive data, you are perfectly fine to use fake details if you wish to try the application**
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Live Demo
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- Website:
+- Video Demo:
 
-### `npm test`
+## Install and Run Project
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- To install to your local machine, run `git clone https://github.com/rvino-123/todo-app-full.git`
+- To run locally, run `npm start`
 
-### `npm run build`
+## Stack
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Front-end: React
+- Server: Google Firebase for storing data and authentication
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Design Decisions
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- React Functional Components: using basic hooks such as useEffect and useState and wrote a custom hook for authentication with FireBase.
+- Styled Components: styling components with javascript, limiting the use of CSS as much as possible.
+- Context: manages state of the application to avoid drilling down props through many components. Use of Reducer to update/clear state.
+- React-Modal: to handle modals for editing/creating.
+- React-Toastify: displays messages to the user (error/info or success).
+- React icons: for easy styling and selection of icons inside the app.
+- uuid: creates unique identifiers for entities inside the application
 
-### `npm run eject`
+## What I learned from this project
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- This project helped me appreciate the React component lifestyle. I was having issues with components rendering before context was loaded and received errors. Using the useEffect hook, async/await operations with promises I was able to delay rendering of components with data until data was loaded in the context.
+- Reusability with styled components. I originally had done this project with a large css file and tons of repeated code with respect to components. Styled components taught me how to organise styles and component functions, and how to think in terms of reusability.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Future additions
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Mobile version: I'd like to be make this tool responsive to mobile devices.
+- Redux: I'd like to manage state globally with redux, retriving state via the component leaves.
+- Performance Optimization (caching): When I update or create a new task, I need to send a get request to firebase to get all the tasks again. I'd like to store the tasks in the browser, so that if I add/update a task it will only notify firebase via POST and appends/updates task inside the browser. This will sigingicantly reduce firestore usage and allow potentially more users to use the application.
+- TypeScript: Currently learning TypeScript, I'd like to comeback to this project and completely rewrite it in typescript.
