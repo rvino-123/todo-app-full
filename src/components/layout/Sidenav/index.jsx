@@ -36,7 +36,6 @@ function SideNav() {
       <Accordion name={boardRoutes[0].name} route={boardRoutes[0].route}>
         {categories &&
           categories.map((category) => {
-            console.log(category.data);
             return (
               <NavCategoryItem
                 key={category.id}

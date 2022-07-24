@@ -137,7 +137,6 @@ export const deleteCategory = async (id) => {
 
 export const addCategoryToListItem = async (id, categoryRef) => {
   const item = await getListItemById(id);
-  console.log("this is id: ", item);
   const editedItem = {
     ...item.data(),
     categoryRef,

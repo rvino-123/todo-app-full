@@ -80,7 +80,6 @@ const CategoryTable = () => {
 
   const handleDelete = async (e) => {
     const listItems = await getItems(user.uid);
-    console.log(listItems);
     const foundItem = listItems.find((x) => x.data.categoryRef === e.target.id);
     if (foundItem) {
       return toast.error(

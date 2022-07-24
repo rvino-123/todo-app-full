@@ -33,7 +33,6 @@ function LoginForm() {
       ...prevState,
       [e.target.id]: e.target.value,
     }));
-    console.log(formData);
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -86,7 +85,7 @@ function LoginForm() {
             type="text"
             name="name"
             id="name"
-            value={email}
+            value={name}
             onChange={handleChange}
             placeholder="joe@example.com"
           />
@@ -126,7 +125,7 @@ function LoginForm() {
         </div>
 
         <div style={{ marginBottom: "2rem" }}>
-          <StyledButton>Log In</StyledButton>
+          <StyledButton>Register</StyledButton>
         </div>
       </form>
       <Link to={"/login"}>Login Instead</Link>

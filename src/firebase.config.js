@@ -6,8 +6,6 @@ import {getFirestore} from "firebase/firestore"
 
 // Your web app's Firebase configuration
 
-console.log(process.env.NODE_ENV)
-
 let firebaseConfig;
 if (process.env.NODE_ENV === "production ") {
 
