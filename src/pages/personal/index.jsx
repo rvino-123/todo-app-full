@@ -25,7 +25,6 @@ function PersonalBoard() {
       dispatch({ type: "GET_CATEGORIES", payload: categories });
     };
     getListItemsAndCategories();
-    console.log("clearning note");
 
     // getEntity("items", user.uid, setListItems);
   }, [dispatch, user.uid]);

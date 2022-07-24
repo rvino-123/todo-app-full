@@ -32,19 +32,16 @@ function AddItem({ boardName, listLength }) {
 
   const submitListItem = async (e) => {
     let formDataCopy = formData;
-    console.log(formData);
 
     if (formDataCopy.description === "") {
       return toast.error("Can't Upload Empty Task");
     }
-    console.log(listLength);
     formData.rank = 0;
 
     await createItem(formData);
 
     // TODO
     const newItems = await getItems(user.uid);
-    console.log("request from additem component");
     dispatch({ type: "GET_ITEMS", payload: newItems });
     setFormData((prevState) => ({
       ...prevState,

@@ -5,7 +5,6 @@ import {
   MdOutlineKeyboardArrowDown,
   MdOutlineKeyboardArrowUp,
 } from "react-icons/md";
-import styled from "styled-components";
 import {
   DropDownDiv,
   DropDownItem,
@@ -14,6 +13,9 @@ import {
 } from "./styles";
 import { useContext } from "react";
 import UserContext from "../../../context/users/UserContext";
+import { getAuth } from "firebase/auth";
+
+const auth = getAuth();
 
 function Header() {
   const [active, setActive] = useState(false);

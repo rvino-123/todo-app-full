@@ -12,10 +12,6 @@ function NotePad({}) {
     description: "",
   });
 
-  useEffect(() => {
-    console.log(note);
-  }, [editMode, note]);
-
   const handleClick = () => {
     editMode ? setEditMode(false) : setEditMode(true);
     setEditNoteForm({ description: note.data.description });
