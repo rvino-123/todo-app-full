@@ -13,8 +13,8 @@ This is my first project in React, it is a ToDo app where you can split your per
 
 ## Live Demo
 
-- Website:
-- Video Demo:
+- Website: https://todo-app-full.vercel.app/
+- Video Demo: https://youtu.be/EoCbWN7iC5Q
 
 ## Install and Run Project
 
@@ -38,7 +38,7 @@ This is my first project in React, it is a ToDo app where you can split your per
 
 ## What I learned from this project
 
-- This project helped me appreciate the React component lifestyle. I was having issues with components rendering before context was loaded and received errors. Using the useEffect hook, async/await operations with promises I was able to delay rendering of components with data until data was loaded in the context.
+- This project helped me appreciate the React component lifestyle. I was having issues with components rendering before context was loaded and received errors. Using the useEffect hook, async/await operations with promises I was able to delay the rendering of components dependent on data until data was loaded in the context.
 - Reusability with styled components. I originally had done this project with a large css file and tons of repeated code with respect to components. Styled components taught me how to organise styles and component functions, and how to think in terms of reusability.
 
 ## Future additions
